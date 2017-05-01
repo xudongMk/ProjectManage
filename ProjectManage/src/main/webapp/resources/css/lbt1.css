@@ -1,0 +1,21 @@
+#divSmallBox{overflow:hidden;*display:inline;*zoom:1;width:10px;height:10px;margin:0 5px;border-radius:10px;background:#ffffff;}
+#playBox{  height:370px; position:relative; overflow:hidden;}
+#playBox .oUlplay { width:99999px; position:absolute; left:0; top:0;}
+#playBox .oUlplay li{ float:left; position: relative; z-index: 1;}
+#playBox .oUlplay li p{width: 100%; height: 40px; line-height: 40px; background-color: rgba(0,0,0,0.3); color: #FFF; text-align: center;
+	text-overflow:ellipsis; 
+	white-space:nowrap; 
+	overflow:hidden; 
+	margin: 0px;
+	padding: 0px 10px;  
+	position: absolute; z-index: 10; left: 0px; bottom: 0px;}
+#playBox .pre{ cursor:pointer; width:45px; height:45px; background:url(../img/index/lbt_left_but.png) no-repeat; position:absolute; top:160px; left:10px; z-index:10;}
+#playBox .next{ cursor:pointer; width:45px; height:45px; background:url(../img/index/lbt_right_but.png) no-repeat; position:absolute; top:160px; right:10px; z-index:10;}
+#playBox .smalltitle {width:100%; height:20px; position:absolute; bottom:15px; z-index:10}
+#playBox .smalltitle ul{text-align: center;}
+#playBox .smalltitle ul li{ width:30px; height:5px; background:#e4e4e4; overflow:hidden;display:inline-block;
+	*display:inline;
+	*margin: 2px 2px;
+ 	*zoom:1;}
+#playBox .smalltitle .thistitle{ background:#206f96;}
+

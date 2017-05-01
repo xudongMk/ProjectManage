@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.AlgorithmDao">
+	<resultMap id="AlgorithmList" type="com.hfut.domain.Algorithm">
+		<id column="Algorithm_id" property="algorithm_id" jdbcType="INTEGER" />
+		<result column="Algorithm_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Algorithm_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Algorithm_pub_time" property="publish_time" jdbcType="DATE" />
+		<result column="Algorithm_name" property="algorithm_name" jdbcType="VARCHAR" />
+		<result column="Algorithm_introduction" property="algorithm_introduction" jdbcType="VARCHAR" />
+		<result column="Algorithm_author" property="algorithm_author" jdbcType="VARCHAR"/>
+		<result column="Algorithm_reletedpaper" property="algorithm_reletedpaper" jdbcType="VARCHAR"/>
+		<result column="Algorithm_releteddataset" property="algorithm_releteddataset" jdbcType="VARCHAR"/>
+		<result column="Algorithm_link" property="algorithm_link" jdbcType="VARCHAR"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- 页码查询 -->
+	<select id="getAlgorithmByPage" resultMap="AlgorithmList" parameterType="int">
+	    select * from project_algorithm where Status=1 order by Algorithm_id desc limit #{0},10
+	</select>
+	<!-- 获取页码的数量 -->
+	<select id="getPage" resultType="com.hfut.domain.PageNum">
+	select count(Algorithm_id) as pageNum from project_algorithm where Status=1
+	</select>
+	<select id="getAllAlgorithm" resultMap="AlgorithmList">
+	    select * from project_algorithm where Status=1
+	</select>
+	<!-- 根据用户名查询 -->
+	<select id="getAlgorithmByUsername" resultMap="AlgorithmList" parameterType="String">
+		select * from project_algorithm where Status=1 and Algorithm_username=#{0}
+	</select>
+	<!-- 根据id查询 -->
+	<select id="getAlgorithmById" resultMap="AlgorithmList" parameterType="int">
+	    select * from project_algorithm where Status=1 and Algorithm_id=#{0}
+	</select>
+	<!-- 获取最新的记录 -->
+	<select id="getAlgorithmNew" resultMap="AlgorithmList">
+    select * from project_algorithm where Status=1 order by Algorithm_id desc limit 1
+	</select>
+	
+	<update id="deleteAlgorithm" parameterType="int">
+	    update project_algorithm set Status=0 where Algorithm_id=#{0}
+	</update>
+	
+	<insert id="addAlgorithm">
+	    insert into 
+	    project_algorithm(Algorithm_name,Algorithm_uid,Algorithm_username,Algorithm_pub_time,Algorithm_introduction,Algorithm_author,Algorithm_reletedpaper,Algorithm_releteddataset,Algorithm_link,Img_id,Status)
+	    values(#{algorithm_name},#{uid},#{username},#{publish_time},#{algorithm_introduction},#{algorithm_author},#{algorithm_reletedpaper},#{algorithm_releteddataset},#{algorithm_link},#{img_id},1)
+	</insert>
+</mapper>

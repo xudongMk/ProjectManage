@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.AchievementDao">
+	<resultMap id="JournalPaperList" type="com.hfut.domain.JournalPaper">
+		<id column="Paper_id" property="paper_id" jdbcType="INTEGER" />
+		<result column="Paper_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Paper_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Paper_pub_time" property="publish_time" jdbcType="DATE" />
+		<result column="Paper_name" property="paper_name" jdbcType="VARCHAR" />
+		<result column="Paper_introduction" property="paper_introduction" jdbcType="VARCHAR" />
+		<result column="Paper_author" property="paper_author" jdbcType="VARCHAR"/>
+		<result column="Paper_publishers" property="paper_publishers" jdbcType="VARCHAR"/>
+		<result column="Paper_volunmn" property="paper_volunmn" jdbcType="VARCHAR"/>
+		<result column="Paper_date" property="paper_date" jdbcType="VARCHAR"/>
+	    <result column="Paper_type" property="paper_type" jdbcType="VARCHAR"/>
+		<result column="Paper_status" property="paper_status" jdbcType="VARCHAR"/>
+		<result column="Paper_link" property="paper_link" jdbcType="VARCHAR"/>		
+		<result column="Special" property="special" jdbcType="INTEGER"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="ConferencePaperList" type="com.hfut.domain.ConferencePaper">
+		<id column="Paper_id" property="paper_id" jdbcType="INTEGER" />
+		<result column="Paper_name" property="paper_name" jdbcType="VARCHAR" />
+		<result column="Paper_introduction" property="paper_introduction" jdbcType="VARCHAR" />
+		<result column="Paper_author" property="paper_author" jdbcType="VARCHAR"/>
+		<result column="Paper_publishers" property="paper_publishers" jdbcType="VARCHAR"/>
+		<result column="Paper_date" property="paper_date" jdbcType="DATE"/>
+		<result column="Paper_status" property="paper_status" jdbcType="VARCHAR"/>
+		<result column="Paper_link" property="paper_link" jdbcType="VARCHAR"/>	
+		<result column="Paper_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Paper_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Paper_pub_time" property="publish_time" jdbcType="VARCHAR"/>
+	    <result column="Special" property="special" jdbcType="INTEGER"/>
+	    <result column="Img_id" property="img_id" jdbcType="VARCHAR"/>			
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="PatentList" type="com.hfut.domain.Patent">
+		<id column="Patent_id" property="patent_id" jdbcType="INTEGER" />
+		<result column="Patent_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Patent_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Patent_pub_time" property="publish_time" jdbcType="VARCHAR" />
+		<result column="Patent_name" property="patent_name" jdbcType="VARCHAR" />
+		<result column="Patent_introduction" property="patent_introduction" jdbcType="VARCHAR" />
+		<result column="Patent_author" property="patent_author" jdbcType="VARCHAR"/>
+		<result column="Patent_date" property="patent_date" jdbcType="DATE"/>
+		<result column="Patent_status" property="patent_status" jdbcType="VARCHAR"/>
+		<result column="Patent_link" property="patent_link" jdbcType="VARCHAR"/>
+	    <result column="Special" property="special" jdbcType="INTEGER"/>
+	    <result column="Img_id" property="img_id" jdbcType="VARCHAR"/>		
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="SoftCopyRightList" type="com.hfut.domain.SoftCopyRight">
+		<id column="SoftwareCopyRight_id" property="softcopyright_id" jdbcType="INTEGER" />
+		<result column="SoftwareCopyRight_uid" property="uid" jdbcType="BIGINT" />
+		<result column="SoftwareCopyRight_username" property="username" jdbcType="VARCHAR"/>
+		<result column="SoftwareCopyRight_pub_time" property="publish_time" jdbcType="DATE" />
+		<result column="SoftwareCopyRight_name" property="softcopyright_name" jdbcType="VARCHAR" />
+		<result column="SoftwareCopyRight_introduction" property="softcopyright_introduction" jdbcType="VARCHAR" />
+		<result column="SoftwareCopyRight_author" property="softcopyright_author" jdbcType="VARCHAR"/>
+		<result column="SoftwareCopyRight_date" property="softcopyright_date" jdbcType="DATE"/>
+		<result column="SoftwareCopyRight_status" property="softcopyright_status" jdbcType="VARCHAR"/>
+		<result column="SoftwareCopyRight_link" property="softcopyright_link" jdbcType="VARCHAR"/>		
+		<result column="Special" property="special" jdbcType="INTEGER"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="BookList" type="com.hfut.domain.Book">
+		<id column="Book_id" property="book_id" jdbcType="INTEGER" />
+		<result column="Book_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Book_pub_time" property="publish_time" jdbcType="VARCHAR" />
+		<result column="Book_name" property="book_name" jdbcType="VARCHAR" />
+		<result column="Book_introduction" property="book_introduction" jdbcType="VARCHAR" />
+		<result column="Book_author" property="book_author" jdbcType="VARCHAR"/>
+		<result column="Book_time" property="book_time" jdbcType="VARCHAR"/>
+		<result column="Book_publish" property="book_publish" jdbcType="VARCHAR"/>		
+		<result column="Special" property="special" jdbcType="INTEGER"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="AwardList" type="com.hfut.domain.Award">
+		<id column="Award_id" property="award_id" jdbcType="INTEGER" />
+		<result column="Award_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Award_pub_time" property="publish_time" jdbcType="VARCHAR" />
+		<result column="Award_name" property="award_name" jdbcType="VARCHAR" />
+		<result column="Award_introduction" property="award_introduction" jdbcType="VARCHAR" />
+		<result column="Award_author" property="award_author" jdbcType="VARCHAR"/>
+		<result column="Award_time" property="award_time" jdbcType="VARCHAR"/>
+		<result column="Award_type" property="award_type" jdbcType="VARCHAR"/>		
+		<result column="Special" property="special" jdbcType="INTEGER"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="StudentList" type="com.hfut.domain.Student">
+		<id column="Student_id" property="student_id" jdbcType="INTEGER" />
+		<result column="Student_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Student_pub_time" property="publish_time" jdbcType="VARCHAR" />
+		<result column="Student_name" property="student_name" jdbcType="VARCHAR" />
+		<result column="Student_introduction" property="student_introduction" jdbcType="VARCHAR" />
+		<result column="Student_type" property="student_type" jdbcType="VARCHAR"/>
+		<result column="Student_begintime" property="student_begintime" jdbcType="VARCHAR"/>
+		<result column="Student_endtime" property="student_endtime" jdbcType="VARCHAR"/>
+		<result column="Student_field" property="student_field" jdbcType="VARCHAR"/>		
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- 根据专利的状态 -->
+	<select id="getPatentByStatus" resultMap="PatentList" parameterType="String">
+	    select * from project_patent where Status=1 and Patent_status=#{0}
+	</select>
+	<!-- show页面的查询语句无需登录 -->
+	<select id="getAllJournalpaper" resultMap="JournalPaperList">
+	   select * from project_journalpaper where Status=1
+	</select>
+	<select id="getAllConferencePaper" resultMap="ConferencePaperList">
+	   select * from project_conferencepaper where Status=1
+	</select>
+	<select id="getAllPatent" resultMap="PatentList">
+	   select * from project_patent where Status=1
+	</select>
+	<select id="getAllSoftcopyright" resultMap="SoftCopyRightList">
+	   select * from project_softwarecopyright where Status=1
+	</select>
+	<!-- 根据username查询 -->
+	<select id="getJournalpaperByUsername" resultMap="JournalPaperList" parameterType="String">
+	   select * from project_journalpaper where Status=1 and Paper_username=#{0}
+	</select>
+	<select id="getConferencepaperByUsername" resultMap="ConferencePaperList" parameterType="String">
+	   select * from project_conferencepaper where Status=1 and Paper_username=#{0}
+	</select>
+	<select id="getPatentByUsername" resultMap="PatentList" parameterType="String">
+	   select * from project_patent where Status=1 and Patent_username=#{0}
+	</select>
+	<select id="getSoftcopyrightByUsername" resultMap="SoftCopyRightList" parameterType="String">
+	   select * from project_softwarecopyright where Status=1 and SoftwareCopyRight_username=#{0}
+	</select>
+	<select id="getBookByUsername" resultMap="BookList" parameterType="String">
+		select * from project_book where Status=1 and Book_username=#{0}
+	</select>
+	<select id="getAwardByUsername" resultMap="AwardList" parameterType="String">
+	select * from project_award where Status=1 and Award_username=#{0}
+	</select>
+    <select id="getStudentByUsername" resultMap="StudentList" parameterType="String">
+    select * from project_student where Status=1 and Student_username=#{0}
+    </select>
+	<!-- 根据id查询，详情页面 -->
+	<select id="getJournalpaperById" resultMap="JournalPaperList" parameterType="int">
+	   select * from project_journalpaper where Status=1 and Paper_id=#{0}
+	</select>
+	<select id="getConferencepaperById" resultMap="ConferencePaperList" parameterType="int">
+	   select * from project_conferencepaper where Status=1 and Paper_id=#{0}
+	</select>
+	<select id="getPatentById" resultMap="PatentList" parameterType="int">
+	   select * from project_patent where Status=1 and Patent_id=#{0}
+	</select>
+	<select id="getSoftcopyrightById" resultMap="SoftCopyRightList" parameterType="int">
+	   select * from project_softwarecopyright where Status=1 and SoftwareCopyRight_id=#{0}
+	</select>
+	<select id="getBookById" resultMap="BookList" parameterType="int">
+	select * from project_book where Status=1 and Book_id=#{0}
+	</select>
+	<select id="getAwardById" resultMap="AwardList" parameterType="int">
+	select * from project_award where Status=1 and Award_id=#{0}
+	</select>
+	<select id="getStudentById" resultMap="StudentList" parameterType="int">
+	select * from project_student where Status=1 and Student_id=#{0}
+	</select>
+	<!-- 查询最新记录 -->
+	<select id="getConferencepaperNew" resultMap="ConferencePaperList">
+	select * from project_conferencepaper where Status=1 order by Paper_id desc limit 1
+	</select>
+	<select id="getJournalpaperNew" resultMap="JournalPaperList">
+	select * from project_journalpaper where Status=1 order by Paper_id desc limit 1
+	</select>
+	<select id="getPatentNew" resultMap="PatentList">
+	select * from project_patent where Status=1 order by Patent_id desc limit 1
+	</select>
+	<select id="getSoftcopyrightNew" resultMap="SoftCopyRightList">
+	select * from project_softwarecopyright where Status=1 order by SoftwareCopyRight_id desc limit 1
+	</select>
+	<!-- 根据页码查询记录 -->
+	<select id="getConferencePaperByPage" resultMap="ConferencePaperList" parameterType="int">
+	select * from project_conferencepaper where Status=1 order by Paper_id desc limit #{0},10
+	</select>
+	<select id="getPatentByPage" resultMap="PatentList" parameterType="int">
+	select * from project_patent where Status=1 order by Patent_id desc limit #{0},10
+	</select>
+	<select id="getJournalpaperByPage" resultMap="JournalPaperList" parameterType="int">
+	select * from project_journalpaper where Status=1 order by Paper_id desc limit #{0},10
+	</select>
+	<select id="getSoftcopyrightByPage" resultMap="SoftCopyRightList" parameterType="int">
+	select * from project_softwarecopyright where Status=1 order by SoftwareCopyRight_id desc limit #{0},10
+	</select>
+	<select id="getBookByPage" resultMap="BookList" parameterType="int">
+		select * from project_book where Status=1 order by Book_id desc limit #{0},10
+	</select>
+	<select id="getAwardByPage" resultMap="AwardList" parameterType="int">
+		select * from project_award where Status=1 order by Award_id desc limit #{0},10
+	</select>
+	<select id="getStudentByPage" resultMap="StudentList" parameterType="int">
+		select * from project_student where Status=1 order by Student_id desc limit #{0},10
+	</select>
+	<!-- 计算页码的数量 -->
+	<select id="getJournalpaperPage" resultType="com.hfut.domain.PageNum">
+		select count(Paper_id) as pageNum from project_journalpaper where Status=1
+	</select>
+	<select id="getConferencePaperPage" resultType="com.hfut.domain.PageNum">
+	    select count(Paper_id) as pageNum from project_conferencepaper where Status=1
+	</select>
+	<select id="getPatentPage" resultType="com.hfut.domain.PageNum">
+	    select count(Patent_id) as pageNum from project_patent where Status=1
+	</select>
+	<select id="getSoftcopyrightPage" resultType="com.hfut.domain.PageNum">
+	    select count(SoftwareCopyRight_id) as pageNum from project_softwarecopyright where Status=1
+	</select>
+	<select id="getBookPage" resultType="com.hfut.domain.PageNum">
+	select count(Book_id) as pageNum from project_book where Status=1
+	</select>
+	<select id="geAwardPage" resultType="com.hfut.domain.PageNum">
+	select count(Award_id) as pageNum from project_award where Status=1
+	</select>
+	<select id="getStudentPage" resultType="com.hfut.domain.PageNum">
+	select count(Student_id) as pageNum from project_student where Status=1
+	</select>
+	<!-- 特色成果 -->
+	<select id="getConferencepaperSpecial" resultMap="ConferencePaperList">
+	select * from project_conferencepaper where Status=1 and Special=1
+	</select>
+	<select id="getPatentSpecial" resultMap="PatentList">
+	select * from project_patent where Status=1 and Special=1
+	</select>
+	<select id="getJournalpaperSpecial" resultMap="JournalPaperList">
+	select * from project_journalpaper where Status=1 and Special=1
+	</select>
+	<select id="getSoftcopyrightSpecial" resultMap="SoftCopyRightList">
+	select * from project_softwarecopyright where Status=1 and Special=1
+	</select>
+	<select id="getBookSpecial" resultMap="BookList">
+	select * from project_book where Status=1 and Special=1
+	</select>
+	<select id="getAwardSpecial" resultMap="AwardList">
+	select * from project_award where Status=1 and Special=1
+	</select>
+	<!-- 添加 记录-->
+	<insert id="addJournalpaper">
+	   insert into 
+	   project_journalpaper(Paper_name,Paper_introduction,Paper_author,Paper_publishers,Paper_volunmn,Paper_date,Paper_type,Paper_status,Paper_link,Paper_uid,Paper_username,Paper_pub_time,Img_id,Special,Status)
+	   values(#{paper_name},#{paper_introduction},#{paper_author},#{paper_publishers},#{paper_volunmn},#{paper_date},#{paper_type},#{paper_status},#{paper_link},#{uid},#{username},#{publish_time},#{img_id},#{special},1)	      
+	</insert>
+	<insert id="addConferencepaper">
+	   insert into project_conferencepaper(Paper_name,Paper_introduction,Paper_author,Paper_publishers,Paper_date,
+	      Paper_status,Paper_link,Paper_uid,Paper_username,Paper_pub_time,Special,Img_id,Status)
+	   values(#{paper_name},#{paper_introduction},#{paper_author},#{paper_publishers},#{paper_date},#{paper_status},#{paper_link},#{uid},#{username},#{publish_time},#{special},#{img_id},1)
+	</insert>
+	<insert id="addPatent">
+	   insert into project_patent(Patent_name,Patent_introduction,Patent_author,Patent_date,Patent_status,Patent_link,
+	      Patent_uid,Patent_username,Patent_pub_time,Special,Img_id,Status)
+	   values(#{patent_name},#{patent_introduction},#{patent_author},#{patent_date},#{patent_status},#{patent_link},#{uid},#{username},#{publish_time},#{special},#{img_id},1)
+	</insert>
+	<insert id="addSoftcopyright">
+	   insert into project_softwarecopyright(SoftwareCopyRight_name,SoftwareCopyRight_introduction,SoftwareCopyRight_author,SoftwareCopyRight_date,SoftwareCopyRight_status,SoftwareCopyRight_link,
+	SoftwareCopyRight_uid,SoftwareCopyRight_username,SoftwareCopyRight_pub_time,Special,Img_id,Status)
+	   values(#{softcopyright_name},#{softcopyright_introduction},#{softcopyright_author},#{softcopyright_date},#{softcopyright_status},#{softcopyright_link},#{uid},#{username},#{publish_time},#{special},#{img_id},1)
+	</insert>
+	<insert id="addBook">
+	insert into project_book(Book_name,Book_author,Book_time,Book_publish,Book_introduction,Book_username,Book_pub_time,Special,img_id,Status)
+	values(#{book_name},#{book_author},#{book_time},#{book_publish},#{book_introduction},#{username},#{publish_time},#{special},#{img_id},1)
+	</insert>
+	<insert id="addAward">
+	insert into project_award(Award_name,Award_type,Award_staff,Award_time,Award_introduction,Award_username,Award_pub_time,Special,img_id,Status)
+	values(#{award_name},#{award_type},#{award_staff},#{award_time},#{award_introduction},#{username},#{publish_time},#{special},#{img_id},1)
+	</insert>
+	<insert id="addStudent">
+	insert into project_student(Student_name,Student_type,Student_introduction,Student_begintime,Student_endtime,Student_field,Student_username,Student_pub_time,img_id,Status)
+	values(#{student_name},#{student_type},#{student_introduction},#{student_begintime},#{student_endtime},#{student_field},#{username},#{publish_time},#{img_id},1)
+	</insert>
+	<!-- 删除记录 -->
+	<update id="deleteJournalpaper">
+	    update project_journalpaper set Status=0 where Paper_id=#{0}
+	</update>
+	<update id="deleteConferencePaper">
+	    update project_conferencepaper set Status=0 where Paper_id=#{0}
+	</update>
+	<update id="deletePatent">
+	    update project_patent set Status=0 where Patent_id=#{0}
+	</update>
+	<update id="deleteSoftcopyright">
+	    update project_softwarecopyright set Status=0 where SoftwareCopyRight_id=#{0}
+	</update>
+	<update id="deleteBook">
+	update project_book set Status=0 where Book_id=#{0}
+	</update>
+	<update id="deleteAward">
+	update project_award set Status=0 where Award_id=#{0}
+	</update>
+	<update id="deleteStudent">
+	update project_student set Status=0 where Student_id=#{0}
+	</update>
+</mapper>

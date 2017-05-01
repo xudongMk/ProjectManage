@@ -1,0 +1,153 @@
+body{
+        color:#888;
+        font: normal 14px/24px \5FAE\8F6F\96C5\9ED1;
+      }
+      .plate{
+        padding:10px 20px;
+      }
+      
+      .plate .title{
+        border-bottom: #ddd solid 1px;
+        height: 37px;
+        line-height: 37px;
+        position: relative;
+        width: 100%;
+        font-weight: normal;
+      
+      }
+      
+      .plate .titName{
+        height: 24px;
+        line-height: 0px;
+        border-bottom: #2f8cd3 solid 1px;
+        color: #2f8cd3;
+        font-size: 16px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      .plate .more{
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 14px;
+        color: #2f8cd3;
+      }
+      
+      h2{
+        display: block;
+        font-size: 1.5em;
+        -webkit-margin-before: 0.83em;
+        -webkit-margin-after: 0.83em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+      }
+      
+      .viewNav {
+          border-bottom: #ddd solid 1px;
+          height: 60px;
+          padding: 15px 0;
+          margin-bottom: 20px;
+      }
+      
+      .viewNav a:hover, .viewNav a.active{
+        background: #2f8cd3;
+        color: #FFF;
+        text-decoration: none;
+      
+      }
+      
+      .viewNav a {
+        display: block;
+        font-size: 13px;
+        color: #5e5e5e;
+        border-radius: 3px;
+        height: 28px;
+        padding: 0 11px;
+        margin-right: 10px;
+        line-height: 28px;
+        float: left;
+        background: #dddddd;
+        color: #2f8cd3;
+      }
+      
+      ul, ol {
+        list-style: none;
+      }
+      
+      .viewList li{
+        border-bottom: #eaeaea solid 1px;
+        margin-bottom: 20px;
+        display: list-item;
+        text-align: -webkit-match-parent;
+      }
+    
+      .viewList .left_image img{
+        display: block;
+        float: left;
+        width: 240px;
+        height: 160px;
+        margin-right: 18px;
+        margin-top:15px;
+        margin-bottom:15px;
+    
+      }
+      
+      .viewList .right_content{
+        width: 70%;
+        float: left;
+        line-height: 32px;
+        margin-left:15px;
+        height:270px
+      
+      }
+      
+      .viewList li strong {
+        font-size: 22px;
+        font-weight: normal;
+        line-height: 40px;
+        margin-top:10px;
+        margin-bottom: 10px;
+        display: block;
+        height: 40px;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      
+      .viewList li p.intro {
+        height: 180px;
+      }
+      
+      .viewList li p.font13 {
+        font-size: 13px;
+        height: 32px;
+        margin-bottom:0px
+      }
+      
+      .viewList li p.font13 span{
+        padding-right:5px;
+      }
+      
+      .viewList li p.font13 .pub_item{
+        padding-right:20px;
+      }
+      
+      .viewList li .right_content .pub_item{
+        padding-right:200px;
+      }
+      
+      .viewList li p {
+        margin-bottom: 5px;
+        height: 72px;
+      }
+        
+      .clearFix:after, .w1000:after, .viewList li:after, .fooNav dl dd:after, .teamList li:after, .askList li:after, .relView dd:after, .basInfo dl:after, .basInfo .dd:after, .viewList dl:after, .memManagement dl:after, .commentsList li:after {
+        content: '\0020';
+        display: block;
+        height: 0;
+        clear: both;
+      }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+
+	<http pattern="/signin" security="none" />
+	<http pattern="/template**" security="none" />
+	<http pattern="/register*" security="none" />
+	<http pattern="/favicon.ico*" security="none" />
+	<http pattern="/resources/**" security="none" />
+	<http pattern="/404*" security="none" />
+	<http pattern="/invalidsession*" security="none" />
+	<http pattern="/open_source_algorithm" security="none" />
+	<http pattern="/upload_sample_data" security="none" />
+	<http auto-config="true" use-expressions="true">
+	
+		<form-login login-page="/signin"
+			authentication-failure-url="/signin?login_error=1" default-target-url="/"/>
+		
+		<logout logout-success-url="/" delete-cookies="JSESSIONID" />
+		<intercept-url pattern="/"	access="permitAll" />
+		<intercept-url pattern="/seminarShow/**"	access="permitAll" />
+		<intercept-url pattern="/algorithmShow/**"	access="permitAll" />
+		<intercept-url pattern="/conferenceShow/**"	access="permitAll" />
+		<intercept-url pattern="/achievementShow"	access="permitAll" />
+		<intercept-url pattern="/datasetShow/**" access="permitAll" />
+		<intercept-url pattern="/patentShow/**" access="permitAll"/>
+		<intercept-url pattern="/conferencepaperShow/**" access="permitAll"/>
+		<intercept-url pattern="/patentShow/**" access="permitAll"/>
+		<intercept-url pattern="/journalpaperShow/**" access="permitAll"/>
+		<intercept-url pattern="/softcopyrightShow/**" access="permitAll"/>
+		<intercept-url pattern="/introduction" access="permitAll"/>
+		<intercept-url pattern="/achivementshow" access="permitAll"/>
+		<intercept-url pattern="/team" access="permitAll"/>
+		<intercept-url pattern="/aboutme" access="permitAll"/>
+		<intercept-url pattern="/awardshow/**" access="permitAll"/>
+		<intercept-url pattern="/bookshow/**" access="permitAll"/>
+		<intercept-url pattern="/studentshow/**" access="permitAll"/>
+				
+		<intercept-url pattern="/open_source_algorithm" access="permitAll" />
+		<intercept-url pattern="/addOpenAlgorithm" access="permitAll" />
+
+		<intercept-url pattern="/details/**" access="permitAll" />
+		
+		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/**"
+			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+
+		<csrf disabled="true" />
+		<access-denied-handler error-page="/403" />
+		<session-management  invalid-session-url="/"> 
+			<concurrency-control max-sessions="1"/> 
+		</session-management>
+		<remember-me data-source-ref="dataSource"
+			token-validity-seconds="1209600" remember-me-parameter="remember-me" />
+	</http>
+
+	<authentication-manager erase-credentials="false">
+		<authentication-provider>
+			<password-encoder ref="bcryptEncoder" />
+			<jdbc-user-service data-source-ref="dataSource" />
+		</authentication-provider>
+	</authentication-manager>
+
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>classpath:myMessages</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean name="bcryptEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+</beans:beans>

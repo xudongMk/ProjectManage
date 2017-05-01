@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.OpenSourceAlgorithmDao">
+	<resultMap id="OpenAlgorithmList" type="com.hfut.domain.OpenAlgorithm">
+		<id column="algorithm_id" property="algorithm_id" jdbcType="INTEGER" />
+		<result column="algorithm_name" property="algorithm_name" jdbcType="VARCHAR" />
+		<result column="language" property="language" jdbcType="VARCHAR"/>
+		<result column="operationmethod" property="operationmethod" jdbcType="VARCHAR" />
+		<result column="dataformat" property="dataformat" jdbcType="VARCHAR" />
+		<result column="parameter" property="parameter" jdbcType="VARCHAR" />
+		<result column="tool" property="tool" jdbcType="VARCHAR"/>
+		<result column="algorithm_classification" property="algorithm_classification" jdbcType="VARCHAR"/>
+		<result column="status" property="status" jdbcType="INTEGER"/>		
+	</resultMap>
+	<!-- 添加用户信息 返回值是插入的记录数-->
+	<insert id="insert">
+	    insert into 
+	    algorith(algorithm_name,language,operationmethod,dataformat,parameter,tool,algorithm_classification,status)
+	    values(#{algorithm_name},#{algorithm_language},#{algorithm_method},#{algorithm_data_format},#{algorithm_parameter},#{algorithm_tool},#{algorithm_type},1)
+	   <!--  #{operationmethod},#{dataformat},#{parameter},#{tool},#{algorithm_classification}) -->
+	</insert>
+	
+</mapper>

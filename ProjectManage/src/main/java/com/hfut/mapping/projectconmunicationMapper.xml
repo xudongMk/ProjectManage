@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.ProjectConmunicationDao">
+	<resultMap id="ConferenceList" type="com.hfut.domain.Conference">
+		<id column="Conference_id" property="conference_id" jdbcType="INTEGER" />
+		<result column="Conference_name" property="conference_name" jdbcType="VARCHAR" />
+		<result column="Conference_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Conference_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Conference_pub_time" property="publish_time" jdbcType="DATE" />
+		<result column="Conference_introduction" property="conference_introduction" jdbcType="VARCHAR"/>
+		<result column="Conference_date" property="conference_date" jdbcType="DATE" />
+		<result column="Conference_level" property="conference_level" jdbcType="CHAR"/>
+		<result column="Conference_location" property="conference_location" jdbcType="VARCHAR"/>
+		<result column="Conference_crew" property="conference_crew" jdbcType="VARCHAR"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<resultMap id="SeminarList" type="com.hfut.domain.Seminar">
+		<id column="Seminar_id" property="seminar_id" jdbcType="INTEGER" />
+		<result column="Seminar_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Seminar_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Seminar_pub_time" property="publish_time" jdbcType="DATE" />
+		<result column="Seminar_title" property="seminar_title" jdbcType="VARCHAR" />
+		<result column="Seminar_date" property="seminar_date" jdbcType="DATE" />
+		<result column="Seminar_location" property="seminar_location" jdbcType="VARCHAR"/>
+		<result column="Seminar_content" property="seminar_content" jdbcType="VARCHAR"/>
+		<result column="Seminar_crew" property="seminar_crew" jdbcType="VARCHAR"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- 所有的查询 -->
+	<select id="getAllMeeting" resultMap="ConferenceList">
+	    select * from project_conference where Status=1
+	</select>
+	<select id="getAllSeminar" resultMap="SeminarList">
+	    select * from project_seminar where Status=1
+	</select>
+	<!-- 页码查询 -->
+	<select id="getSeminarByPage" resultMap="SeminarList" parameterType="int">
+	select * from project_seminar where Status=1 order by Seminar_id desc limit #{0},10
+	</select>
+	<select id="getMeetingByPage" resultMap="ConferenceList" parameterType="int">
+	select * from project_conference where Status=1 order by Conference_id desc limit #{0},10
+	</select>
+	<!-- 页码的数量 -->
+	<select id="getConferencePageAll" resultType="com.hfut.domain.PageNum">
+	select count(Conference_id) as pageNum from project_conference where Status=1
+	</select>
+	<select id="getConferencePage" resultType="com.hfut.domain.PageNum" parameterType="String">
+	select count(Conference_id) as pageNum from project_conference where Status=1 and Conference_level=#{0}
+	</select>
+	<select id="getSeminarPageAll" resultType="com.hfut.domain.PageNum">
+	select count(Seminar_id) as pageNum from project_seminar where Status=1
+	</select>
+	<select id="getSeminarPage" resultType="com.hfut.domain.PageNum" parameterType="String">
+	select count(Seminar_id) as pageNum from project_seminar where Status=1 and Conference_level=#{0}
+	</select>
+	<!-- 根据id查询 -->
+	<select id="getConferenceById" resultMap="ConferenceList" parameterType="int">
+	    select * from project_conference where Status=1 and Conference_id=#{0}
+	</select>
+	<select id="getSeminarById" resultMap="SeminarList" parameterType="int">
+	    select * from project_seminar where Status=1 and Seminar_id=#{0}
+	</select>
+	<!-- 根据研讨会举办的地点查询和会议的等级以及根据时间来查询 -->
+	<select id="getSeminarByLocation" resultMap="SeminarList">
+	    select * from project_seminar where Status=1 and Seminar_date like #{0} order by Seminar_id limit #{1},10
+	</select>
+	<select id="getConferenceByLevel" resultMap="ConferenceList">
+	    select * from project_conference where Status=1 and Conference_date like #{0} order by Conference_id limit #{1},10
+	</select>
+	<select id="getSeminarByDate" resultMap="SeminarList" parameterType="String">
+	    select * from project_seminar where Status=1 and Seminar_date=#{0}
+	</select>
+	<select id="getConferenceByDate" resultMap="ConferenceList" parameterType="String">
+		select * from project_conference where Status=1 and Conference_date=#{0}
+	</select>
+	<!-- 根据用户名查询 -->
+	<select id="getSeminarByUsername" resultMap="SeminarList" parameterType="String">
+	    select * from project_seminar where Status=1 and Seminar_username=#{0}
+	</select>
+	<select id="getMeetingByUsername" resultMap="ConferenceList" parameterType="String">
+	    select * from project_conference where Status=1 and Conference_username=#{0}
+	</select>
+	<!-- 查询最近的几条记录返回到首页 -->
+	<select id="getSeminarNew" resultMap="SeminarList">
+	    select * from project_seminar where Status=1 order by Seminar_id desc limit 7
+	</select>
+	<!-- 删除信息 -->
+	<update id="deleteMeeting" parameterType="int">
+	   update project_conference set Status=0 where Conference_id=#{0}
+	</update>
+	<update id="deleteSeminar" parameterType="int">
+	    update project_seminar set Status=0 where Seminar_id=#{0}
+	</update>	
+	<!-- 返回的是记录的行数 -->
+	<insert id="addMeeting">
+	    insert into 
+	    project_conference(Conference_name,Conference_introduction,Conference_uid,Conference_username,Conference_pub_time,Conference_date,Conference_level,Conference_location,Conference_crew,Img_id,Status)
+	    values(#{conference_name},#{conference_introduction},#{uid},#{username},#{publish_time},#{conference_date},#{conference_level},#{conference_location},#{conference_crew},#{img_id},1)
+	</insert>
+	<insert id="addSeminar">
+	    insert into 
+	    project_seminar(Seminar_title,Seminar_uid,Seminar_username,Seminar_pub_time,Seminar_date,Seminar_location,Seminar_content,Seminar_crew,Img_id,Status)
+	    values(#{seminar_title},#{uid},#{username},#{publish_time},#{seminar_date},#{seminar_location},#{seminar_content},#{seminar_crew},#{img_id},1)
+	</insert>
+</mapper>

@@ -1,0 +1,46 @@
+.list_main{
+	font-family: "微软雅黑";
+	margin:0 40px ;
+}
+.col-md-10{
+	margin:0 5% 0 0;
+    font-family: "微软雅黑";
+	border-left: 0px solid #eee;
+	border-right: 0px solid #eee;	
+}
+
+.title_nav {
+	margin: 10px 0;
+}
+
+.title {
+	text-align: center;
+	font-size: 20px;
+}
+
+.post p {
+	padding: 0;
+	text-align: center;
+	margin: 0 50px;
+	font-size: 12px;
+	color: #919191;
+}
+
+.post p span {
+	margin: 0 14px;
+}
+
+.info p {
+	padding: 0;
+	font-size: 16px;
+}
+.abstract span{
+	font-size:16px;
+}
+
+.abstract p{
+	margin: 10px 0 38px 0;
+	font-size: 16px;
+	 text-indent:2em ;
+	 line-height:2;
+}

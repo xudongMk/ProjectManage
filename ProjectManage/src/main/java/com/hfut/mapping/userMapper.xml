@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.UserDao">
+<!--设置domain类和数据库中表的字段一一对应，注意数据库字段和domain类中的字段名称不致，此处一定要注意！-->
+	<resultMap id="UserList" type="com.hfut.domain.User">
+		<id column="userid" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="userName" jdbcType="CHAR" />
+		<result column="password" property="userPassword" jdbcType="CHAR" />
+		<result column="email" property="userEmail" jdbcType="CHAR"/>
+		<result column="enabled" property="userEnavled" jdbcType="INTEGER"/>
+	</resultMap>
+	<!-- 查询单条记录 sql语句的定义-->
+	<select id="selectUserById" parameterType="int" resultMap="UserList">
+		SELECT * FROM users WHERE userid = #{userId}
+	</select>
+	<!-- 查询所有的用户信息 -->
+	<select id="findByname" resultMap="UserList">
+	    SELECT username,password FROM users where username=#{userName} and USER_STATUS=1
+	</select>
+	<!-- 添加用户信息 返回值是插入的记录数-->
+	<insert id="addUser" parameterType="com.hfut.domain.User">
+	    INSERT INTO users(username,password,email,enabled) values(#{userName},#{userPassword},#{userEmail},1)
+	</insert>
+	<insert id="addAuthority" parameterType="com.hfut.domain.User">
+		insert into authorities(username,authority) values(#{userName},'ROLE_USER')
+	</insert>
+	<!-- 删除用户信息 -->
+	<delete id="deleteUser" parameterType="int">
+	    DELETE FROM users WHERE userid = #{userId}
+	</delete>
+</mapper>

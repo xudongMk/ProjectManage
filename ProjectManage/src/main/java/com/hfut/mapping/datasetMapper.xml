@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hfut.dao.DataSetDao">
+	<resultMap id="DataSetList" type="com.hfut.domain.DataSet">
+		<id column="Dataset_id" property="dataset_id" jdbcType="INTEGER" />
+		<result column="Dataset_name" property="dataset_name" jdbcType="VARCHAR" />
+		<result column="Dataset_uid" property="uid" jdbcType="BIGINT" />
+		<result column="Dataset_username" property="username" jdbcType="VARCHAR"/>
+		<result column="Dataset_pub_time" property="publish_time" jdbcType="VARCHAR" />
+		<result column="Dataset_introduction" property="dataset_introduction" jdbcType="VARCHAR" />
+		<result column="Dataset_field" property="dataset_field" jdbcType="CHAR"/>
+		<result column="Dataset_format" property="dataset_format" jdbcType="CHAR"/>
+		<result column="Dataset_link" property="dataset_link" jdbcType="VARCHAR"/>
+		<result column="Dataset_source" property="dataset_source" jdbcType="VARCHAR"/>
+		<result column="Dataset_tag" property="dataset_tag" jdbcType="VARCHAR"/>
+		<result column="Img_id" property="img_id" jdbcType="VARCHAR"/>
+		<result column="Status" property="status" jdbcType="INTEGER"/>
+	</resultMap>
+	
+	<select id="getAllDataSet" resultMap="DataSetList" parameterType="int">
+	    select * from project_dataset where Status=1
+	</select>
+	<!-- 页码查询 -->
+	<select id="getDataSetByPage" resultMap="DataSetList" parameterType="int">
+	    select * from project_dataset where Status=1 order by Dataset_id desc limit #{0},10
+	</select>
+	<!-- 根据用户名查询 -->
+	<select id="getDataSetByUsername" resultMap="DataSetList" parameterType="String">
+	    select * from project_dataset where Status=1 and Dataset_username=#{0}
+	</select>
+	<!-- 根据id查询 -->
+	<select id="getDatasetById" resultMap="DataSetList" parameterType="int">
+	    select * from project_dataset where Status=1 and Dataset_id=#{0}
+	</select>
+	<select id="getPage" resultType="com.hfut.domain.PageNum" parameterType="String">
+	    select count(*) as pageNum from project_dataset where Status=1 and Dataset_format=#{0}
+	</select>
+	<select id="getPageAll" resultType="com.hfut.domain.PageNum">
+	    select count(*) as pageNum from project_dataset where Status=1
+	</select>
+	<!--  数据的格式和数据领域-->
+	<select id="getDataSetByFomat" resultMap="DataSetList">
+		select * from project_dataset where Status=1 and Dataset_format=#{0} order by Dataset_id desc limit #{1},10
+	</select>
+	<select id="getDataSetByField" resultMap="DataSetList" parameterType="String">
+	    select * from project_dataset where Status=1 and Dataset_field=#{0}
+	</select>
+	<!-- 查询最新的记录 -->
+	<select id="getDatasetNew" resultMap="DataSetList">
+	select * from project_dataset where Status=1 order by Dataset_id desc limit 7
+	</select>
+	<!-- 删除数据记录 -->
+	<update id="deleteDataSet" parameterType="int">
+	    update project_dataset set Status=0 where Dataset_id=#{0}
+	</update>
+	
+	<insert id="addDataSet">
+	    insert into project_dataset(Dataset_name,Dataset_uid,Dataset_username,Dataset_pub_time,Dataset_introduction,Dataset_field,Dataset_format,Dataset_link,Dataset_source,Dataset_tag,Img_id,Status)
+	    values(#{dataset_name},#{uid},#{username},#{publish_time},#{dataset_introduction},#{dataset_field},#{dataset_format},#{dataset_link},#{dataset_source},#{dataset_tag},#{img_id},1)
+	</insert>
+</mapper>
